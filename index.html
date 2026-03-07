@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>महात्मा फुले कृषी प्रतिष्ठान | Mahatma Phule Krishi Pratishthan</title>
+    
+    <link rel="icon" href="https://ibb.co/9mkBXrLy" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-green: #27ae60;
+            --dark-green: #1e8449;
+            --light-green: #2ecc71;
+            --light-yellow: #fcf3cf;
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-light: #555555;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+        }
+
+        body {
+            font-family: 'Mukta', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: 50px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.3rem;
+            color: var(--dark-green);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.2;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.8rem;
+            color: var(--primary-green);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-green);
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-green);
+            border-color: var(--dark-green);
+            transform: translateY(-3px);
+            color: var(--white);
+            box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--dark-green);
+        }
+
+        /* --- Hero Slider Section (Desktop Default) --- */
+        .hero-slider {
+            position: relative;
+            height: 100vh;
+            margin-top: var(--header-height);
+            background-color: var(--dark-green);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(10, 40, 20, 0.85) 0%, rgba(10, 40, 20, 0.4) 60%, transparent 100%);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            color: var(--white);
+            text-align: left;
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--light-yellow);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.1;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .hero-content .eng-text {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            opacity: 0.9;
+            line-height: 1.5;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            border-left: 4px solid var(--primary-green);
+            padding-left: 15px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* --- Krushi Mitra Section --- */
+        .krushi-mitra {
+            padding: 80px 5%;
+            background-color: var(--light-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .km-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .km-text h2 {
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .km-text p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+        }
+
+        .km-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .km-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .km-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* --- Sections General --- */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-bottom: 50px;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-green);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* --- About Section --- */
+        .about {
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        /* --- Services Section --- */
+        .services {
+            background-color: #f9fbf9;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--primary-green);
+            transition: height 0.3s ease;
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(46, 125, 50, 0.1);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+            opacity: 0.05;
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 70px 5% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--light-yellow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-green);
+        }
+
+        .footer-col p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--light-yellow);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 1rem;
+            color: #bbb;
+        }
+
+        /* --- Scroll Reveal Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* --- Responsive Design (Tablet Adjustments) --- */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 3rem; }
+            .krushi-mitra { flex-direction: column-reverse; text-align: center; } 
+            .km-image { text-align: center; margin-bottom: 30px; }
+            .hero-content { align-items: center; text-align: center; margin: 0 auto; }
+            .hero-overlay { justify-content: center; background: rgba(10, 40, 20, 0.6); }
+            .hero-buttons { justify-content: center; }
+            .hero-content .eng-text { border-left: none; padding-left: 0; }
+        }
+
+        /* --- Responsive Design (Mobile Exact Desktop Replica) --- */
+        @media (max-width: 768px) {
+            /* Mobile Navigation */
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: right 0.4s ease-in-out;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 30px 0;
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            /* --- FIXED MOBILE HERO --- */
+            /* Forces a 16:9 ratio box so the image is 100% visible with zero crop */
+            .hero-slider {
+                height: auto;
+                aspect-ratio: 16 / 9; 
+                min-height: unset;
+            }
+
+            .slide {
+                background-size: 100% 100%; 
+            }
+
+            .hero-overlay {
+                position: absolute; /* Keeps overlay on the image */
+                height: 100%;
+                background: linear-gradient(to right, rgba(10, 40, 20, 0.9) 0%, rgba(10, 40, 20, 0.5) 80%, transparent 100%);
+                padding: 0 5%;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            /* Scale down text and elements using VW (Viewport Width) so they shrink perfectly */
+            .hero-content { margin: 0; text-align: left; }
+            .hero-content h1 { font-size: 4.8vw; margin-bottom: 1vw; line-height: 1.2; }
+            .hero-content h2 { font-size: 3.2vw; margin-bottom: 2vw; }
+            .hero-content .eng-text { font-size: 2vw; margin-bottom: 3vw; border-left-width: 2px; padding-left: 2vw; line-height: 1.3; }
+            
+            /* Keep buttons inline but scale them down */
+            .hero-buttons { flex-direction: row; width: 100%; gap: 2vw; justify-content: flex-start; }
+            .hero-buttons .btn { width: auto; padding: 1.5vw 3vw; font-size: 2.2vw; border-width: 1px; border-radius: 15px; }
+            
+            .km-text h2 { font-size: 2rem; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="homepage.html" class="logo-container">
+            <img src="https://i.ibb.co/Pv6GGGT3/logo.png" alt="प्रतिष्ठान लोगो" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'><rect width=\'50\' height=\'50\' fill=\'%2327ae60\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'12\'>Logo</text></svg>'">
+            <div class="logo-text">
+                <h1>महात्मा फुले कृषी प्रतिष्ठान</h1>
+                <p>Mahatma Phule Krishi Pratishthan</p>
+            </div>
+        </a>
+        
+        <button class="hamburger" id="hamburger">☰</button>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="homepage.html">मुख्य पृष्ठ</a></li>
+            <li><a href="technicalsupport.html">तांत्रिक सल्ला</a></li>
+            <li><a href="Careearwithus.html">कृषी मित्र भरती</a></li>
+            <li><a href="contacts.html">संपर्क</a></li>
+        </ul>
+    </header>
+
+    <section class="hero-slider">
+        <div class="slide active" style="background-image: url('https://i.ibb.co/VckhBwHg/Gemini-Generated-Image-l8ol53l8ol53l8ol-1-1-1-1-1.png');"></div>
+        <div class="slide" style="background-image: url('https://i.ibb.co/qLz9XRqN/Gemini-Generated-Image-wsl748wsl748wsl7.png');"></div>
+        
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>शेतीला समृद्धीचा मार्ग -</h1>
+                <h2>आधुनिक तंत्रज्ञान आणि वैज्ञानिक दृष्टीकोन</h2>
+                <p class="eng-text">Helps Farmers Prosper<br>Modern Technology and Technical Works</p>
+                <div class="hero-buttons">
+                    <a href="homepage.html" class="btn">About Us</a>
+                    <a href="technicalsupport.html" class="btn btn-outline">Services</a>
+                    <a href="contacts.html" class="btn">Contact</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="krushi-mitra reveal">
+        <div class="km-text">
+            <h2>कृषी मित्र बना - आमच्या ज्ञानमोहीमेत सहभागी व्हा</h2>
+            <p>Farm Mitra initiative encourages actionable knowledge sharing to improve agricultural practices.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6Ga3b1ykWczJdxXHr862Sl5Krm9v1aXV4yLsEhHImyFFNiA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn">Join now</a>
+        </div>
+        <div class="km-image">
+            <img src="https://i.ibb.co/JRykH4gM/krushi-mitra.jpg" alt="krushi mitra" border="0">
+        </div>
+    </section>
+
+    <section id="about" class="about reveal">
+        <h2 class="section-title">महात्मा फुले कृषी प्रतिष्ठान बद्दल</h2>
+        <p>ही संस्था शेतकऱ्यांना आधुनिक शेती तंत्रज्ञान, तांत्रिक मार्गदर्शन आणि रोजगाराच्या संधी उपलब्ध करून देण्यासाठी कार्य करते. आमचे ध्येय म्हणजे शेतकऱ्यांना प्रगत शेतीकडे नेणे आणि ग्रामीण भागाचा विकास करणे.</p>
+    </section>
+
+    <section id="services" class="services reveal">
+        <h2 class="section-title">आमच्या सेवा</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌱</div>
+                <h3>पिकांचे नियोजन</h3>
+                <p>योग्य पिक निवड, हंगामानुसार नियोजन आणि उत्पादन वाढवण्यासाठी मार्गदर्शन.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧪</div>
+                <h3>खत व फवारणी मार्गदर्शन</h3>
+                <p>योग्य खत व्यवस्थापन आणि सुरक्षित फवारणीसाठी माहिती.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚜</div>
+                <h3>आधुनिक शेती तंत्रज्ञान</h3>
+                <p>नवीन शेती पद्धती, सिंचन तंत्रज्ञान आणि स्मार्ट शेती उपाय.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid reveal">
+            <div class="footer-col">
+                <h4>संस्थेचे नाव</h4>
+                <p style="font-size: 1.3rem; font-weight: bold; color: var(--white);">महात्मा फुले कृषी प्रतिष्ठान</p>
+                <p style="font-size: 1rem; color: var(--light-yellow);">Mahatma Phule Krishi Pratishthan</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>महत्त्वाच्या लिंक्स</h4>
+                <ul>
+                    <li><a href="homepage.html">मुख्य पृष्ठ</a></li>
+                    <li><a href="technicalsupport.html">तांत्रिक सल्ला</a></li>
+                    <li><a href="Careearwithus.html">कृषी मित्र भरती</a></li>
+                    <li><a href="contacts.html">संपर्क</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>संपर्क माहिती</h4>
+                <p>📞 फोन: +91 00000 00000</p>
+                <p>✉️ ईमेल: info@mahatmaphulekrishi.org</p>
+                <p>📍 पत्ता: मुख्य कार्यालय, महाराष्ट्र, भारत.</p>
+            </div>
+        </div>
+        <div class="footer-bottom reveal">
+            <p>© 2026 महात्मा फुले कृषी प्रतिष्ठान. सर्व हक्क सुरक्षित.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerText = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerText = '☰';
+            });
+        });
+
+        // --- Image Slider Logic (2 seconds interval) ---
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 2000);
+
+        // --- Scroll Reveal Animation ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Trigger point
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger once on load
+    </script>
+</body>
+</html>
