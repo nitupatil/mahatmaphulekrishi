@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>तांत्रिक सल्ला | महात्मा फुले कृषी प्रतिष्ठान</title>
+    
+    <link rel="icon" href="https://i.ibb.co/xK8NjcRV/fevicon.png" type="image/png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-green: #27ae60;
+            --dark-green: #1e8449;
+            --light-green: #2ecc71;
+            --light-yellow: #fcf3cf;
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-light: #555555;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+        }
+
+        body {
+            font-family: 'Mukta', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: 50px;
+            object-fit: contain;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container:hover img {
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        .logo-text h1 {
+            font-size: 1.3rem;
+            color: var(--dark-green);
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--dark-green), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.2;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--light-green), var(--primary-green));
+            transition: width 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .nav-links a.active::after, .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-green);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            transition: transform 0.3s ease;
+        }
+
+        /* --- Page Header Banner with Ken Burns Effect --- */
+        .page-header {
+            margin-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 5%;
+            text-align: center;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 40vh;
+        }
+
+        .page-header-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1592982537447-6f233496032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            z-index: -2;
+            animation: kenBurns 20s infinite alternate linear;
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        .page-header-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(30, 132, 73, 0.9), rgba(46, 204, 113, 0.7));
+            z-index: -1;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            animation: slideDown 1s ease-out forwards;
+        }
+
+        .page-header p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+            color: var(--light-yellow);
+            animation: slideUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        /* --- Sections General --- */
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        /* FIXED: Perfectly Centered Title */
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin: 0 auto 60px auto; /* Centers the block itself */
+            font-weight: 700;
+            position: relative;
+            width: fit-content; /* Hugs the text exactly */
+            background: linear-gradient(45deg, var(--dark-green), var(--light-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title::after {
+            content: '';
+            width: 80%; /* Takes up 80% of the text width */
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--primary-green), transparent);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%); /* Centers the underline under the text */
+            border-radius: 5px;
+        }
+
+        /* --- Animated Background Shapes --- */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+        .shape-1 {
+            width: 300px; height: 300px;
+            background: var(--light-green);
+            top: 10%; left: -5%;
+        }
+        .shape-2 {
+            width: 400px; height: 400px;
+            background: var(--light-yellow);
+            bottom: 10%; right: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -50px) scale(1.1); }
+        }
+
+        /* --- Interactive Services Grid --- */
+        .technical-services {
+            background-color: #fdfdfd;
+            overflow: hidden;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(39, 174, 96, 0.1);
+        }
+
+        /* Hover Fill Effect */
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 0%;
+            background: linear-gradient(to top, var(--light-yellow), transparent);
+            transition: height 0.4s ease;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(46, 125, 50, 0.15);
+            border-color: var(--light-green);
+        }
+
+        .tech-card:hover::before {
+            height: 100%;
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #ffffff, var(--light-yellow));
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            border: 2px solid var(--light-green);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.2);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .tech-card:hover .tech-icon {
+            transform: rotate(15deg) scale(1.15);
+            background: var(--primary-green);
+            border-color: var(--dark-green);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
+        }
+
+        .tech-card h3 {
+            font-size: 1.6rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .tech-card:hover h3 {
+            color: var(--primary-green);
+        }
+
+        .tech-card p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tech-card ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover ul li {
+            transform: translateX(5px); 
+        }
+
+        .tech-card ul li::before {
+            content: '➔';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--primary-green);
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover ul li::before {
+            transform: translateX(3px);
+        }
+
+        /* --- Creative Call to Action Banner --- */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            text-align: center;
+            padding: 80px 5%;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -10%;
+            width: 300px; height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: pulse 4s infinite alternate;
+        }
+        
+        .cta-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -50%; right: -10%;
+            width: 400px; height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: pulse 5s infinite alternate-reverse;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--light-yellow);
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .cta-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--dark-green);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--light-yellow);
+            transform: translateY(-5px) scale(1.05);
+            color: var(--dark-green);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-wave {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-wave::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            border-radius: 50px;
+            z-index: -1;
+            animation: buttonWave 2s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes buttonWave {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #113a20; 
+            color: var(--white);
+            padding: 70px 5% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--light-yellow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--light-green);
+        }
+
+        .footer-col p, .footer-col ul li a {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d1d8d3;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--light-yellow);
+            transform: translateX(8px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 1rem;
+            color: #88a390;
+        }
+
+        /* --- Staggered Scroll Animations --- */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tech-grid .tech-card:nth-child(1) { transition-delay: 0.1s; }
+        .tech-grid .tech-card:nth-child(2) { transition-delay: 0.2s; }
+        .tech-grid .tech-card:nth-child(3) { transition-delay: 0.3s; }
+        .tech-grid .tech-card:nth-child(4) { transition-delay: 0.4s; }
+        .tech-grid .tech-card:nth-child(5) { transition-delay: 0.5s; }
+        .tech-grid .tech-card:nth-child(6) { transition-delay: 0.6s; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                flex-direction: column;
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                text-align: center;
+                transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 30px 0;
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .page-header {
+                padding: 80px 5%;
+                min-height: 30vh;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+
+            .tech-grid .tech-card { transition-delay: 0s !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <a href="homepage.html" class="logo-container">
+            <img src="https://i.ibb.co/Pv6GGGT3/logo.png" alt="प्रतिष्ठान लोगो" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'><rect width=\'50\' height=\'50\' fill=\'%2327ae60\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'12\'>Logo</text></svg>'">
+            <div class="logo-text">
+                <h1>महात्मा फुले कृषी प्रतिष्ठान</h1>
+                <p>Mahatma Phule Krishi Pratishthan</p>
+            </div>
+        </a>
+        
+        <button class="hamburger" id="hamburger">☰</button>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="homepage.html">मुख्य पृष्ठ</a></li>
+            <li><a href="technicalsupport.html" class="active">तांत्रिक सल्ला</a></li>
+            <li><a href="Careearwithus.html">कृषी मित्र भरती</a></li>
+            <li><a href="contacts.html">संपर्क</a></li>
+        </ul>
+    </header>
+
+    <section class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="page-header-overlay"></div>
+        <h1>तांत्रिक सल्ला आणि मार्गदर्शन</h1>
+        <p>शेतीतील तुमच्या प्रत्येक समस्येवर आमच्या तज्ज्ञांचे अचूक आणि वैज्ञानिक मार्गदर्शन.</p>
+    </section>
+
+    <section class="technical-services">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        
+        <h2 class="section-title reveal">आम्ही कशी मदत करू शकतो?</h2>
+        
+        <div class="tech-grid">
+            <div class="tech-card reveal">
+                <div class="tech-icon">🧪</div>
+                <h3>माती आणि पाणी परीक्षण</h3>
+                <p>पिकांच्या योग्य वाढीसाठी जमिनीचा पोत आणि पाण्याची गुणवत्ता तपासणे अत्यंत आवश्यक आहे.</p>
+                <ul>
+                    <li>मातीतील अन्नद्रव्यांची तपासणी</li>
+                    <li>पाण्याचा सामू (pH) आणि क्षारता तपासणी</li>
+                    <li>परीक्षणानुसार खतांची शिफारस</li>
+                </ul>
+            </div>
+
+            <div class="tech-card reveal">
+                <div class="tech-icon">🌱</div>
+                <h3>पिकांचे नियोजन व व्यवस्थापन</h3>
+                <p>हवामान आणि जमिनीच्या प्रकारानुसार योग्य पिकाची निवड आणि संपूर्ण हंगामाचे यशस्वी नियोजन.</p>
+                <ul>
+                    <li>हंगामानुसार पीक निवड</li>
+                    <li>पेरणी ते काढणी पर्यंतचे वेळापत्रक</li>
+                    <li>आंतरपीक आणि पीक फेरपालट पद्धती</li>
+                </ul>
+            </div>
+
+            <div class="tech-card reveal">
+                <div class="tech-icon">🦠</div>
+                <h3>रोग व कीड नियंत्रण</h3>
+                <p>पिकांवरील विविध रोग आणि किडींच्या नियंत्रणासाठी अचूक અને सुरक्षित उपाययोजना.</p>
+                <ul>
+                    <li>किडींची ओळख आणि प्रतिबंधात्मक उपाय</li>
+                    <li>योग्य कीटकनाशक व बुरशीनाशकाची निवड</li>
+                    <li>जैविक कीड नियंत्रण पद्धती</li>
+                </ul>
+            </div>
+
+            <div class="tech-card reveal">
+                <div class="tech-icon">💧</div>
+                <h3>सिंचन आणि जल व्यवस्थापन</h3>
+                <p>पाण्याची बचत करून पिकांना योग्य प्रमाणात पाणी देण्याच्या आधुनिक पद्धतींचे मार्गदर्शन.</p>
+                <ul>
+                    <li>ठिबक आणि तुषार सिंचन तंत्रज्ञान</li>
+                    <li>पिकांच्या वाढीनुसार पाण्याचे नियोजन</li>
+                    <li>शेततळे आणि जलपुनर्भरणाची माहिती</li>
+                </ul>
+            </div>
+
+            <div class="tech-card reveal">
+                <div class="tech-icon">🚜</div>
+                <h3>आधुनिक कृषी तंत्रज्ञान</h3>
+                <p>शेतीची कामे सोपी, वेळेची बचत करणारी आणि जलद करण्यासाठी नवीन यंत्रांची माहिती.</p>
+                <ul>
+                    <li>स्मार्ट फार्मिंग आणि सेन्सर्सचा वापर</li>
+                    <li>ट्रॅक्टर चलित आधुनिक अवजारे</li>
+                    <li>हवामान अंदाजावर आधारित शेती</li>
+                </ul>
+            </div>
+
+            <div class="tech-card reveal">
+                <div class="tech-icon">📈</div>
+                <h3>बाजारपेठ आणि अर्थकारण</h3>
+                <p>शेतमालाला योग्य भाव मिळवण्यासाठी बाजारपेठेचा अभ्यास आणि योग्य विक्री व्यवस्थापन.</p>
+                <ul>
+                    <li>शेतमालाची प्रतवारी आणि पॅकेजिंग</li>
+                    <li>बाजारभावाचा अंदाज आणि विक्रीची वेळ</li>
+                    <li>शासकीय योजनांची अद्ययावत माहिती</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner reveal">
+        <div class="cta-content">
+            <h2>तुमच्या शेतासाठी वैयक्तिक सल्ला हवा आहे का?</h2>
+            <p>आमचे कृषी तज्ज्ञ तुमच्या प्रश्नांची उत्तरे देण्यासाठी आणि तुमच्या शेतीला समृद्ध करण्यासाठी नेहमी तत्पर आहेत. आजच आमच्याशी संपर्क साधा.</p>
+            <a href="contacts.html" class="btn btn-wave">आमच्याशी संपर्क साधा</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid reveal">
+            <div class="footer-col">
+                <h4>संस्थेचे नाव</h4>
+                <p style="font-size: 1.3rem; font-weight: bold; color: var(--white);">महात्मा फुले कृषी प्रतिष्ठान</p>
+                <p style="font-size: 1rem; color: var(--light-yellow);">Mahatma Phule Krishi Pratishthan</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>महत्त्वाच्या लिंक्स</h4>
+                <ul>
+                    <li><a href="homepage.html">मुख्य पृष्ठ</a></li>
+                    <li><a href="technicalsupport.html">तांत्रिक सल्ला</a></li>
+                    <li><a href="Careearwithus.html">कृषी मित्र भरती</a></li>
+                    <li><a href="contacts.html">संपर्क</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>संपर्क माहिती</h4>
+                <p>📞 फोन: +91 00000 00000</p>
+                <p>✉️ ईमेल: info@mahatmaphulekrishi.org</p>
+                <p>📍 पत्ता: मुख्य कार्यालय, महाराष्ट्र, भारत.</p>
+            </div>
+        </div>
+        <div class="footer-bottom reveal">
+            <p>© 2026 महात्मा फुले कृषी प्रतिष्ठान. सर्व हक्क सुरक्षित.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle with animation ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if(navLinks.classList.contains('active')){
+                hamburger.innerHTML = '✕';
+                hamburger.style.transform = 'rotate(90deg)';
+            } else {
+                hamburger.innerHTML = '☰';
+                hamburger.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '☰';
+                hamburger.style.transform = 'rotate(0deg)';
+            });
+        });
+
+        // --- Header Scroll Effect ---
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.padding = '0 5%';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.padding = '10px 5%';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            }
+        });
+
+        // --- Advanced Scroll Reveal Animation ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; 
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); 
+    </script>
+</body>
+</html>
