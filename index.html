@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>महात्मा फुले कृषी प्रतिष्ठान | Mahatma Phule Krishi Pratishthan</title>
+    <title>महात्मा फुले कृषी विकास केंद्र | Mahatma Phule Krushi Vikas Kendra</title>
     
     <link rel="icon" href="https://ibb.co/9mkBXrLy" type="image/x-icon">
     
@@ -42,6 +42,27 @@
             overflow-x: hidden;
         }
 
+        /* --- Skeleton Loading Animation --- */
+        .skeleton {
+            background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+            background-size: 200% 100%;
+            animation: skeletonLoading 1.5s infinite;
+            border-radius: 8px;
+        }
+        
+        img {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        img[data-loading="true"] {
+            opacity: 0;
+        }
+
+        @keyframes skeletonLoading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
         /* --- Header & Navigation --- */
         header {
             position: fixed;
@@ -49,7 +70,7 @@
             width: 100%;
             height: var(--header-height);
             background-color: var(--white);
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -72,14 +93,14 @@
         }
 
         .logo-text h1 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--dark-green);
             font-weight: 700;
             line-height: 1.2;
         }
 
         .logo-text p {
-            font-size: 0.85rem;
+            font-size: 0.80rem;
             color: var(--text-light);
             line-height: 1.2;
         }
@@ -140,7 +161,7 @@
             transition: all 0.3s ease;
             border: 2px solid var(--primary-green);
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.4);
             text-align: center;
         }
 
@@ -149,7 +170,7 @@
             border-color: var(--dark-green);
             transform: translateY(-3px);
             color: var(--white);
-            box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.6);
         }
 
         .btn-outline {
@@ -163,10 +184,23 @@
             color: var(--dark-green);
         }
 
-        /* --- Hero Slider Section (Desktop Default) --- */
+        .btn-outline.dark-outline {
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        .btn-outline.dark-outline:hover {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        /* --- Hero Slider Section (Updated for Perfect Fit) --- */
         .hero-slider {
             position: relative;
-            height: 100vh;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 7; /* Typical wide banner aspect ratio */
+            min-height: 450px; /* Ensures text has enough room */
             margin-top: var(--header-height);
             background-color: var(--dark-green);
         }
@@ -177,8 +211,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
+            background-size: 100% 100%; /* Stretches perfectly to all corners, 0 cropping */
             background-position: center;
+            background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1s ease-in-out;
             z-index: 1;
@@ -194,7 +229,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(10, 40, 20, 0.85) 0%, rgba(10, 40, 20, 0.4) 60%, transparent 100%);
+            background: linear-gradient(to right, rgba(10, 40, 20, 0.85) 0%, rgba(10, 40, 20, 0.3) 60%, transparent 100%);
             z-index: 2;
             display: flex;
             align-items: center;
@@ -213,7 +248,7 @@
             font-weight: 700;
             margin-bottom: 10px;
             color: var(--light-yellow);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
             line-height: 1.1;
         }
 
@@ -221,7 +256,7 @@
             font-size: 2rem;
             font-weight: 600;
             margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
         }
 
         .hero-content .eng-text {
@@ -229,7 +264,7 @@
             margin-bottom: 35px;
             opacity: 0.9;
             line-height: 1.5;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
             border-left: 4px solid var(--primary-green);
             padding-left: 15px;
         }
@@ -240,49 +275,138 @@
             flex-wrap: wrap;
         }
 
-        /* --- Krushi Mitra Section --- */
-        .krushi-mitra {
+        /* --- Focused Highlight Section (Krushi Mitra) --- */
+        .krushi-mitra-wrapper {
             padding: 80px 5%;
-            background-color: var(--light-yellow);
+            background-color: #f4f6f7;
+        }
+
+        .krushi-mitra {
+            background: linear-gradient(135deg, var(--light-yellow) 0%, #f9e79f 100%);
+            border: 2px solid #f39c12;
+            border-radius: 20px;
+            padding: 50px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .krushi-mitra::before {
+            content: '🔥 मेगा भरती 🔥';
+            position: absolute;
+            top: 25px;
+            right: -45px;
+            background: #e74c3c;
+            color: white;
+            padding: 8px 50px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 10;
         }
 
         .km-text {
             flex: 1;
-            max-width: 600px;
+            max-width: 650px;
+            z-index: 2;
         }
 
         .km-text h2 {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             color: var(--dark-green);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        .km-text p {
-            font-size: 1.2rem;
-            color: var(--text-dark);
+        .offer-details {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 25px;
+            border-radius: 12px;
             margin-bottom: 30px;
+            border-left: 6px solid #e74c3c;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .offer-details .highlight-text {
+            font-size: 1.6rem;
+            color: #d35400;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .offer-details .sub-highlight {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .offer-details p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-top: 10px;
         }
 
         .km-image {
             flex: 1;
             text-align: right;
+            z-index: 2;
         }
 
         .km-image img {
             width: 100%;
             max-width: 500px;
             border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transition: transform 0.4s ease;
         }
 
         .km-image img:hover {
             transform: scale(1.02);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* Pulse Animation for Apply Now */
+        .btn-pulse {
+            animation: btn-pulse 1.5s infinite;
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        .btn-pulse:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+        }
+
+        @keyframes btn-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+        }
+
+        /* Periodic Pop Animation for More Details */
+        .btn-pop {
+            animation: periodic-pop 4s infinite;
+            transform-origin: center;
+        }
+
+        @keyframes periodic-pop {
+            0%, 85% { transform: scale(1); }
+            90% { transform: scale(1.1); }
+            95% { transform: scale(0.95); }
+            100% { transform: scale(1); }
         }
 
         /* --- Sections General --- */
@@ -340,13 +464,14 @@
         .service-card {
             background-color: var(--white);
             border: 1px solid #eee;
-            border-radius: 12px;
+            border-radius: 15px;
             padding: 40px 30px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             z-index: 1;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         .service-card::before {
@@ -362,8 +487,8 @@
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(46, 125, 50, 0.1);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(46, 125, 50, 0.15);
         }
 
         .service-card:hover::before {
@@ -476,17 +601,18 @@
         /* --- Responsive Design (Tablet Adjustments) --- */
         @media (max-width: 992px) {
             .hero-content h1 { font-size: 3rem; }
-            .krushi-mitra { flex-direction: column-reverse; text-align: center; } 
+            .krushi-mitra { flex-direction: column-reverse; text-align: center; padding: 40px 20px; } 
             .km-image { text-align: center; margin-bottom: 30px; }
             .hero-content { align-items: center; text-align: center; margin: 0 auto; }
             .hero-overlay { justify-content: center; background: rgba(10, 40, 20, 0.6); }
             .hero-buttons { justify-content: center; }
             .hero-content .eng-text { border-left: none; padding-left: 0; }
+            .offer-details { text-align: left; }
+            .btn-group { justify-content: center; }
         }
 
         /* --- Responsive Design (Mobile Exact Desktop Replica) --- */
         @media (max-width: 768px) {
-            /* Mobile Navigation */
             .nav-links {
                 position: fixed;
                 top: var(--header-height);
@@ -509,20 +635,18 @@
                 display: block;
             }
 
-            /* --- FIXED MOBILE HERO --- */
-            /* Forces a 16:9 ratio box so the image is 100% visible with zero crop */
             .hero-slider {
                 height: auto;
-                aspect-ratio: 16 / 9; 
-                min-height: unset;
+                aspect-ratio: auto; /* Let the text dictate the minimum height */
+                min-height: 400px; 
             }
 
             .slide {
-                background-size: 100% 100%; 
+                background-size: 100% 100%; /* Force perfect fit on mobile too */
             }
 
             .hero-overlay {
-                position: absolute; /* Keeps overlay on the image */
+                position: absolute; 
                 height: 100%;
                 background: linear-gradient(to right, rgba(10, 40, 20, 0.9) 0%, rgba(10, 40, 20, 0.5) 80%, transparent 100%);
                 padding: 0 5%;
@@ -530,18 +654,17 @@
                 align-items: center;
             }
 
-            /* Scale down text and elements using VW (Viewport Width) so they shrink perfectly */
             .hero-content { margin: 0; text-align: left; }
             .hero-content h1 { font-size: 4.8vw; margin-bottom: 1vw; line-height: 1.2; }
             .hero-content h2 { font-size: 3.2vw; margin-bottom: 2vw; }
             .hero-content .eng-text { font-size: 2vw; margin-bottom: 3vw; border-left-width: 2px; padding-left: 2vw; line-height: 1.3; }
             
-            /* Keep buttons inline but scale them down */
             .hero-buttons { flex-direction: row; width: 100%; gap: 2vw; justify-content: flex-start; }
             .hero-buttons .btn { width: auto; padding: 1.5vw 3vw; font-size: 2.2vw; border-width: 1px; border-radius: 15px; }
             
             .km-text h2 { font-size: 2rem; }
             .section-title { font-size: 2rem; }
+            .krushi-mitra::before { right: -50px; font-size: 0.9rem; top: 15px; }
         }
     </style>
 </head>
@@ -549,10 +672,10 @@
 
     <header>
         <a href="homepage.html" class="logo-container">
-            <img src="https://i.ibb.co/Pv6GGGT3/logo.png" alt="प्रतिष्ठान लोगो" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'><rect width=\'50\' height=\'50\' fill=\'%2327ae60\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'12\'>Logo</text></svg>'">
+            <img src="https://i.ibb.co/Pv6GGGT3/logo.png" alt="केंद्र लोगो" class="skeleton-img" data-loading="true" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'><rect width=\'50\' height=\'50\' fill=\'%2327ae60\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'12\'>Logo</text></svg>'">
             <div class="logo-text">
-                <h1>महात्मा फुले कृषी प्रतिष्ठान</h1>
-                <p>Mahatma Phule Krishi Pratishthan</p>
+                <h1>महात्मा फुले कृषी विकास केंद्र</h1>
+                <p>Mahatma Phule Krushi Vikas Kendra</p>
             </div>
         </a>
         
@@ -561,14 +684,14 @@
         <ul class="nav-links" id="nav-links">
             <li><a href="homepage.html">मुख्य पृष्ठ</a></li>
             <li><a href="technicalsupport.html">तांत्रिक सल्ला</a></li>
-            <li><a href="Careearwithus.html">कृषी मित्र भरती</a></li>
+            <li><a href="krushi_mitra_bharati.html">कृषी मित्र भरती</a></li>
             <li><a href="contacts.html">संपर्क</a></li>
         </ul>
     </header>
 
-    <section class="hero-slider">
-        <div class="slide active" style="background-image: url('https://i.ibb.co/VckhBwHg/Gemini-Generated-Image-l8ol53l8ol53l8ol-1-1-1-1-1.png');"></div>
-        <div class="slide" style="background-image: url('https://i.ibb.co/qLz9XRqN/Gemini-Generated-Image-wsl748wsl748wsl7.png');"></div>
+    <section class="hero-slider skeleton">
+        <div class="slide active" style="background-image: url('https://i.ibb.co/SDH48qvn/Banner01.jpg');"></div>
+        <div class="slide" style="background-image: url('https://i.ibb.co/SDH48qvn/Banner01.jpg');"></div>
         
         <div class="hero-overlay">
             <div class="hero-content">
@@ -584,19 +707,30 @@
         </div>
     </section>
 
-    <section class="krushi-mitra reveal">
-        <div class="km-text">
-            <h2>कृषी मित्र बना - आमच्या ज्ञानमोहीमेत सहभागी व्हा</h2>
-            <p>Farm Mitra initiative encourages actionable knowledge sharing to improve agricultural practices.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6Ga3b1ykWczJdxXHr862Sl5Krm9v1aXV4yLsEhHImyFFNiA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn">Join now</a>
-        </div>
-        <div class="km-image">
-            <img src="https://i.ibb.co/JRykH4gM/krushi-mitra.jpg" alt="krushi mitra" border="0">
-        </div>
-    </section>
+    <div class="krushi-mitra-wrapper reveal">
+        <section class="krushi-mitra">
+            <div class="km-text">
+                <h2>कृषी मित्र बना - आमच्या ज्ञानमोहीमेत सहभागी व्हा</h2>
+                
+                <div class="offer-details">
+                    <p class="highlight-text">एकूण जागा: ३०,५००</p>
+                    <p class="sub-highlight">मेघा भरती: प्रत्येक गावात एक 'कृषी मित्र नेमणे आहे!</p>
+                    <p>मराठवाडा, विदर्भ आणि खानदेशातील ग्रामीण तरुणांना आपल्याच गावात राहून सन्मानाने काम करण्याची संधी.</p>
+                </div>
+
+                <div class="btn-group">
+                    <a href="https://forms.gle/pd7TxUNNowdKJDMb9" target="_blank" rel="noopener noreferrer" class="btn btn-pulse">Apply Now (अर्ज करा)</a>
+                    <a href="krushi_mitra_bharati.html" class="btn btn-outline dark-outline btn-pop">अधिक माहिती (More Details)</a>
+                </div>
+            </div>
+            <div class="km-image">
+                <img src="https://i.ibb.co/JRykH4gM/krushi-mitra.jpg" alt="krushi mitra" class="skeleton-img" data-loading="true" border="0">
+            </div>
+        </section>
+    </div>
 
     <section id="about" class="about reveal">
-        <h2 class="section-title">महात्मा फुले कृषी प्रतिष्ठान बद्दल</h2>
+        <h2 class="section-title">महात्मा फुले कृषी विकास केंद्राबद्दल</h2>
         <p>ही संस्था शेतकऱ्यांना आधुनिक शेती तंत्रज्ञान, तांत्रिक मार्गदर्शन आणि रोजगाराच्या संधी उपलब्ध करून देण्यासाठी कार्य करते. आमचे ध्येय म्हणजे शेतकऱ्यांना प्रगत शेतीकडे नेणे आणि ग्रामीण भागाचा विकास करणे.</p>
     </section>
 
@@ -625,8 +759,8 @@
         <div class="footer-grid reveal">
             <div class="footer-col">
                 <h4>संस्थेचे नाव</h4>
-                <p style="font-size: 1.3rem; font-weight: bold; color: var(--white);">महात्मा फुले कृषी प्रतिष्ठान</p>
-                <p style="font-size: 1rem; color: var(--light-yellow);">Mahatma Phule Krishi Pratishthan</p>
+                <p style="font-size: 1.3rem; font-weight: bold; color: var(--white);">महात्मा फुले कृषी विकास केंद्र</p>
+                <p style="font-size: 1rem; color: var(--light-yellow);">Mahatma Phule Krushi Vikas Kendra</p>
             </div>
             
             <div class="footer-col">
@@ -634,24 +768,51 @@
                 <ul>
                     <li><a href="homepage.html">मुख्य पृष्ठ</a></li>
                     <li><a href="technicalsupport.html">तांत्रिक सल्ला</a></li>
-                    <li><a href="Careearwithus.html">कृषी मित्र भरती</a></li>
+                    <li><a href="krushi_mitra_bharati.html">कृषी मित्र भरती</a></li>
                     <li><a href="contacts.html">संपर्क</a></li>
                 </ul>
             </div>
             
             <div class="footer-col">
                 <h4>संपर्क माहिती</h4>
-                <p>📞 फोन: +91 00000 00000</p>
-                <p>✉️ ईमेल: info@mahatmaphulekrishi.org</p>
-                <p>📍 पत्ता: मुख्य कार्यालय, महाराष्ट्र, भारत.</p>
+                <p>📞 फोन:<br> +91 158153198 <br>+91 9158153189 <br>+91 9158153191 <br>+91 9579120653</p>
+                <p>✉️ ईमेल:<br> mpkvk1903@gmail.com</p>
+                <p>📍 पत्ता:<br> प्लॉट नं. १२, गट नं. २९, तायल सिद्धिविनायक स्क्वेअर, छत्रपती संभाजीनगर, औरंगाबाद-४३१००१</p>
+                <p style="font-size: 0.95rem; opacity: 0.8; margin-top: 5px;">Plot No. 12, Gut No.29, Tayal Sidhhivinayak Square, Chhatrapati Sambhajinagar, Aurangabad, Aurangabad-431001</p>
             </div>
         </div>
         <div class="footer-bottom reveal">
-            <p>© 2026 महात्मा फुले कृषी प्रतिष्ठान. सर्व हक्क सुरक्षित.</p>
+            <p>© 2026 महात्मा फुले कृषी विकास केंद्र. सर्व हक्क सुरक्षित.</p>
         </div>
     </footer>
 
     <script>
+        // --- Skeleton Loading Logic ---
+        document.addEventListener("DOMContentLoaded", function() {
+            // Hero slider background skeleton
+            const heroSlider = document.querySelector('.hero-slider');
+            const heroImage = new Image();
+            heroImage.src = 'https://i.ibb.co/SDH48qvn/Banner01.jpg';
+            heroImage.onload = () => {
+                heroSlider.classList.remove('skeleton');
+            };
+
+            // Image tags skeleton
+            const images = document.querySelectorAll('.skeleton-img');
+            images.forEach(img => {
+                img.classList.add('skeleton');
+                if (img.complete) {
+                    img.removeAttribute('data-loading');
+                    img.classList.remove('skeleton');
+                } else {
+                    img.addEventListener('load', () => {
+                        img.removeAttribute('data-loading');
+                        img.classList.remove('skeleton');
+                    });
+                }
+            });
+        });
+
         // --- Mobile Menu Toggle ---
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
@@ -697,3 +858,4 @@
     </script>
 </body>
 </html>
+
