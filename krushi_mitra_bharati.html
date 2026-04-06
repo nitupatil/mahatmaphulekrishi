@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कृषी मित्र भरती | महात्मा फुले कृषी विकास केंद्र</title>
     
-    <title>Mahatma Phule Krushi Vikas Kendra-महात्मा फुले कृषी विकास केंद्र</title>
     <link rel="icon" href="https://i.ibb.co/Pv6GGGT3/logo.png" type="image/png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,10 +15,12 @@
         :root {
             --primary-green: #27ae60;
             --dark-green: #1e8449;
+            --light-green: #2ecc71;
+            --light-yellow: #fcf3cf;
+            --white: #ffffff;
             --text-dark: #2c3e50;
-            --bg-color: #f4faf6;
-            --card-bg: #ffffff;
-            --warning-orange: #d35400;
+            --text-light: #555555;
+            --header-height: 80px;
         }
 
         * {
@@ -27,144 +29,780 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Mukta', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
         }
 
-        .maintenance-container {
-            max-width: 650px;
+        body {
+            font-family: 'Mukta', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
             width: 100%;
-            text-align: center;
+            height: var(--header-height);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .logo-container {
-            margin-bottom: 30px;
-            animation: fadeInDown 0.8s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
         }
 
         .logo-container img {
-            width: 110px;
-            height: 110px;
+            height: 50px;
+            width: 50px;
             object-fit: contain;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container:hover img {
+            transform: rotate(-10deg) scale(1.1);
         }
 
-        .logo-container h1 {
+        .logo-text h1 {
+            font-size: 1.3rem;
             color: var(--dark-green);
-            font-size: 2rem;
             font-weight: 700;
-            margin: 0;
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--dark-green), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-light);
             line-height: 1.2;
         }
 
-        .notice-card {
-            background: var(--card-bg);
-            padding: 45px 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-top: 6px solid var(--warning-orange);
-            animation: fadeInUp 0.8s ease 0.2s both;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
         }
 
-        .notice-card h2 {
-            color: var(--warning-orange);
-            font-size: 2.2rem;
-            margin-bottom: 25px;
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--light-green), var(--primary-green));
+            transition: width 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .nav-links a.active::after, .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-green);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            transition: transform 0.3s ease;
+        }
+
+        /* --- Page Header Banner with Ken Burns Effect --- */
+        .page-header {
+            margin-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 5%;
+            text-align: center;
+            color: var(--white);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            min-height: 45vh;
         }
 
-        .notice-card p {
-            font-size: 1.25rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            color: #444;
+        .page-header-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1589923188900-85dae523342b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            z-index: -2;
+            animation: kenBurns 20s infinite alternate linear;
         }
 
-        .apology-box {
-            background-color: #fff3cd;
-            border-left: 5px solid #f1c40f;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 6px;
+        @keyframes kenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
         }
 
-        .apology-box p {
-            margin: 0;
-            font-size: 1.15rem;
-            color: #856404;
+        .page-header-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(30, 132, 73, 0.85), rgba(46, 204, 113, 0.65));
+            z-index: -1;
         }
 
-        .team-signature {
+        .page-header h1 {
+            font-size: 3.5rem;
             font-weight: 700;
-            font-size: 1.2rem !important;
-            color: var(--primary-green) !important;
-            margin-top: 30px !important;
-            margin-bottom: 0 !important;
+            margin-bottom: 15px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            animation: slideDown 1s ease-out forwards;
         }
 
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
+        .page-header p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+            color: var(--light-yellow);
+            animation: slideUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        /* --- Sections General --- */
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin: 0 auto 60px auto; 
+            font-weight: 700;
+            position: relative;
+            width: fit-content; 
+            background: linear-gradient(45deg, var(--dark-green), var(--light-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title::after {
+            content: '';
+            width: 80%; 
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--primary-green), transparent);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%); 
+            border-radius: 5px;
+        }
+
+        /* --- Animated Background Shapes --- */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+        .shape-1 {
+            width: 300px; height: 300px;
+            background: var(--light-green);
+            top: 5%; left: -5%;
+        }
+        .shape-2 {
+            width: 400px; height: 400px;
+            background: var(--light-yellow);
+            bottom: 5%; right: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -50px) scale(1.1); }
+        }
+
+        /* --- Feature Cards (Responsibilities & Benefits) --- */
+        .feature-section {
+            background-color: #fdfdfd;
+            overflow: hidden;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(39, 174, 96, 0.1);
+        }
+
+        .feature-card.benefits {
+            border-top: 5px solid var(--primary-green);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 0%;
+            background: linear-gradient(to top, var(--light-yellow), transparent);
+            transition: height 0.4s ease;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(46, 125, 50, 0.15);
+            border-color: var(--light-green);
+        }
+
+        .feature-card:hover::before {
+            height: 100%;
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .feature-card p, .feature-card ul {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .feature-card ul li {
+            margin-bottom: 10px;
+        }
+
+        /* --- Custom Info Banners --- */
+        .info-banner {
+            max-width: 1000px;
+            margin: 0 auto 80px auto;
+            background: linear-gradient(to right, rgba(39, 174, 96, 0.05), rgba(252, 243, 207, 0.5));
+            border-left: 5px solid var(--primary-green);
+            padding: 40px;
+            border-radius: 0 20px 20px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+        }
+
+        .mega-bharti-banner {
+            background: linear-gradient(135deg, #fff9e6, #f2fcf5);
+            border: 2px dashed var(--primary-green);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .info-banner h3 {
+            font-size: 2rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+        }
+
+        .info-banner p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        /* --- Creative Call to Action Banner --- */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            text-align: center;
+            padding: 80px 5%;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            margin-top: 50px;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -10%;
+            width: 300px; height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: pulse 4s infinite alternate;
+        }
+        
+        .cta-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -50%; right: -10%;
+            width: 400px; height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: pulse 5s infinite alternate-reverse;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--light-yellow);
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .cta-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--dark-green);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--light-yellow);
+            transform: translateY(-5px) scale(1.05);
+            color: var(--dark-green);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-wave {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-wave::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            border-radius: 50px;
+            z-index: -1;
+            animation: buttonWave 2s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes buttonWave {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #113a20; 
+            color: var(--white);
+            padding: 70px 5% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--light-yellow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--light-green);
+        }
+
+        .footer-col p, .footer-col ul li a {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d1d8d3;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--light-yellow);
+            transform: translateX(8px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 1rem;
+            color: #88a390;
+        }
+
+        /* --- Staggered Scroll Animations --- */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .notice-card {
-                padding: 30px 20px;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-grid .feature-card:nth-child(1) { transition-delay: 0.1s; }
+        .feature-grid .feature-card:nth-child(2) { transition-delay: 0.2s; }
+        .feature-grid .feature-card:nth-child(3) { transition-delay: 0.3s; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                flex-direction: column;
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                text-align: center;
+                transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 30px 0;
+                gap: 20px;
             }
-            .logo-container h1 {
-                font-size: 1.6rem;
+
+            .nav-links.active {
+                right: 0;
             }
-            .notice-card h2 {
-                font-size: 1.8rem;
+
+            .hamburger {
+                display: block;
             }
-            .notice-card p {
-                font-size: 1.1rem;
+
+            .page-header {
+                padding: 80px 5%;
+                min-height: 35vh;
             }
-            .apology-box p {
-                font-size: 1.05rem;
-            }
+
+            .page-header h1 { font-size: 2.2rem; }
+            .section-title { font-size: 2.2rem; }
+            .cta-banner h2 { font-size: 2rem; }
+            .info-banner { padding: 25px; margin-bottom: 50px; }
+            
+            .feature-grid .feature-card { transition-delay: 0s !important; }
         }
     </style>
 </head>
 <body>
 
-    <div class="maintenance-container">
-        <div class="logo-container">
-            <img src="https://i.ibb.co/Pv6GGGT3/logo.png" alt="महात्मा फुले कृषी विकास केंद्र लोगो">
-            <h1>महात्मा फुले कृषी विकास केंद्र</h1>
+    <header id="main-header">
+        <a href="index.html" class="logo-container">
+            <img src="https://i.ibb.co/Pv6GGGT3/logo.png" alt="प्रतिष्ठान लोगो" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'><rect width=\'50\' height=\'50\' fill=\'%2327ae60\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'12\'>Logo</text></svg>'">
+            <div class="logo-text">
+                <h1>महात्मा फुले कृषी विकास केंद्र
+</h1>
+                <p>Mahatma Phule Krushi Vikas Kendra</p>
+            </div>
+        </a>
+        
+        <button class="hamburger" id="hamburger">☰</button>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">मुख्य पृष्ठ</a></li>
+            <li><a href="technicalsupport.html">तांत्रिक सल्ला</a></li>
+            <li><a href="krushi_mitra_bharati.html" class="active">कृषी मित्र भरती</a></li>
+            <li><a href="contacts.html">संपर्क</a></li>
+        </ul>
+    </header>
+
+    <section class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="page-header-overlay"></div>
+        <h1>कृषी मित्र भरती</h1>
+        <p>आमच्या ज्ञानमोहीमेत सहभागी व्हा आणि शेतकऱ्यांच्या समृद्धीचा मार्ग प्रशस्त करा.</p>
+    </section>
+
+    <section class="feature-section">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        
+        <div class="info-banner mega-bharti-banner reveal">
+            <h2 style="color: var(--dark-green); font-size: 2.2rem; font-weight: 700; margin-bottom: 10px;">महात्मा फुले कृषी विकास केंद्र॥</h2>
+            <h3 style="color: #e74c3c; font-size: 1.8rem; margin-bottom: 15px;">मेघा भरती: प्रत्येक गावात एक 'कृषी मित्र' नेमणे आहे!</h3>
+            <p style="font-size: 1.4rem; font-weight: 600; color: var(--primary-green); margin-bottom: 15px;">एकूण जागा: ३०,५००</p>
+            <p style="font-size: 1.2rem; margin-bottom: 15px;">मराठवाडा, विदर्भ आणि खानदेशातील ग्रामीण तरुणांना आपल्याच गावात राहून सन्मानाने काम करण्याची संधी.</p>
+            <div style="background-color: var(--white); display: inline-block; padding: 10px 25px; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-top: 10px;">
+                <p style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark); margin: 0;">💰 मानधन: <span style="color: var(--primary-green);">२०,००० पर्यंत</span> कमावण्याची संधी <span style="font-size: 1rem; font-weight: normal; color: var(--text-light);">(कामाच्या स्वरूपानुसार व अनुभवानुसार)</span></p>
+            </div>
         </div>
 
-        <div class="notice-card">
-            <h2>⚙️ महत्वाची सूचना</h2>
-            <p>महात्मा फुले कृषी विकास केंद्राची वेबसाईट सध्या <strong>तांत्रिक सुधारणा (Maintenance)</strong> प्रक्रियेत आहे.</p>
-            <p>या कारणास्तव वेबसाईट पुढील <strong>24 तासांसाठी तात्पुरती बंद</strong> राहील.</p>
-            
-            <div class="apology-box">
-                <p>आपल्याला होणाऱ्या गैरसोयीबद्दल आम्ही दिलगीर आहोत.<br>कृपया 24 तासांनंतर पुन्हा भेट द्यावी.</p>
+        <div class="info-banner reveal">
+            <h3>'कृषी मित्र' म्हणजे काय?</h3>
+            <p>शेती क्षेत्रात काम करण्याची इच्छा असलेल्या तरुणांसाठी 'कृषी मित्र' ही एक सुवर्णसंधी आहे. महात्मा फुले कृषी प्रतिष्ठान आणि शेतकरी यांच्यातील महत्त्वाचा दुवा म्हणजे कृषी मित्र. शेतकऱ्यांपर्यंत नवीन तंत्रज्ञान, योजना आणि योग्य मार्गदर्शन पोहोचवण्याचे अत्यंत मोलाचे कार्य कृषी मित्रांद्वारे केले जाते.</p>
+        </div>
+
+        <h2 class="section-title reveal">भरती तपशील आणि पात्रता</h2>
+        
+        <div class="feature-grid" style="margin-bottom: 80px;">
+            <div class="feature-card reveal">
+                <div class="feature-icon">✅</div>
+                <h3>पात्रता व अटी</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><strong style="color: var(--dark-green);">वय:</strong> १८ ते ३५ वर्षे.</li>
+                    <li><strong style="color: var(--dark-green);">शिक्षण:</strong> किमान १०वी/१२वी उत्तीर्ण (कृषी पदवी/डिप्लोमा असल्यास प्राधान्य).</li>
+                    <li><strong style="color: var(--dark-green);">क्षेत्र:</strong> मराठवाडा, विदर्भ व खानदेशातील सर्व गावे.</li>
+                    <li><strong style="color: var(--dark-green);">निवड:</strong> अर्जदारांची निवड लेखी परीक्षेतील गुण तसेच शालेय गुणवत्ता यादीच्या आधारे करण्यात येईल.</li>
+                </ul>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon">📄</div>
+                <h3>आवश्यक कागदपत्रे (Documents Required)</h3>
+                <p>Kindly keep the following documents ready before initiating the application process:</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li><strong>१.</strong> 10th Marksheet</li>
+                    <li><strong>२.</strong> 12th Marksheet (If Applicable)</li>
+                    <li><strong>३.</strong> Passport Size Photo</li>
+                    <li><strong>४.</strong> Aadhar Card</li>
+                    <li><strong>५.</strong> Pan Card</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title reveal">कृषी मित्राच्या मुख्य जबाबदाऱ्या</h2>
+        
+        <div class="feature-grid" style="margin-bottom: 100px;">
+            <div class="feature-card reveal">
+                <div class="feature-icon">🤝</div>
+                <h3>शेतकऱ्यांशी संपर्क</h3>
+                <p>गावातील शेतकऱ्यांच्या भेटी घेणे, त्यांच्या शेतीविषयक समस्या जाणून घेणे आणि संस्थेच्या तज्ज्ञांशी त्यांचा संपर्क घडवून आणणे.</p>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon">📢</div>
+                <h3>योजनांची माहिती देणे</h3>
+                <p>शासनाच्या नवीन कृषी योजना, अनुदाने आणि संस्थेच्या उपक्रमांची माहिती शेतकऱ्यांच्या बांधावर जाऊन देणे.</p>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon">📱</div>
+                <h3>तंत्रज्ञानाचा प्रसार</h3>
+                <p>शेतकऱ्यांना स्मार्ट शेती, माती परीक्षण, हवामान अंदाज आणि पीक व्यवस्थापन तंत्रज्ञान वापरण्यास प्रोत्साहित करणे.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title reveal">कृषी मित्र बनण्याचे फायदे</h2>
+
+        <div class="feature-grid">
+            <div class="feature-card benefits reveal">
+                <div class="feature-icon">💼</div>
+                <h3>रोजगार आणि उत्पन्न</h3>
+                <p>स्वतःच्या गावात राहूनच काम करण्याची संधी आणि उत्कृष्ट कामाच्या आधारावर आकर्षक मानधन मिळवण्याची सुविधा.</p>
+            </div>
+
+            <div class="feature-card benefits reveal">
+                <div class="feature-icon">🎓</div>
+                <h3>प्रशिक्षण आणि ज्ञान</h3>
+                <p>कृषी क्षेत्रातील नामवंत तज्ज्ञांकडून आधुनिक शेतीचे मोफत आणि सखोल प्रशिक्षण मिळवण्याची संधी.</p>
+            </div>
+
+            <div class="feature-card benefits reveal">
+                <div class="feature-icon">🌟</div>
+                <h3>सामाजिक सन्मान</h3>
+                <p>शेतकऱ्यांची प्रगती साधल्यामुळे गावात आणि समाजात एक प्रतिष्ठित आणि मार्गदर्शक म्हणून ओळख निर्माण होते.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner reveal">
+        <div class="cta-content">
+            <h2>तुमचे भविष्य घडवा, ग्रामीण विकास साधा!</h2>
+            <p>आजच कृषी मित्र म्हणून नोंदणी करा आणि महाराष्ट्राच्या शेतीला एक नवी दिशा देण्याच्या आमच्या या प्रवासात सामील व्हा.</p>
+            <a href="https://forms.gle/pd7TxUNNowdKJDMb9" target="_blank" rel="noopener noreferrer" class="btn btn-wave">आताच अर्ज करा</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid reveal">
+            <div class="footer-col">
+                <h4>संस्थेचे नाव</h4>
+                <p style="font-size: 1.3rem; font-weight: bold; color: var(--white);">महात्मा फुले कृषी विकास केंद्र
+</p>
+                <p style="font-size: 1rem; color: var(--light-yellow);">Mahatma Phule Krushi Vikas Kendra</p>
             </div>
             
-            <p class="team-signature">– टीम, महात्मा फुले कृषी विकास केंद्र</p>
+            <div class="footer-col">
+                <h4>महत्त्वाच्या लिंक्स</h4>
+                <ul>
+                    <li><a href="index.html">मुख्य पृष्ठ</a></li>
+                    <li><a href="technicalsupport.html">तांत्रिक सल्ला</a></li>
+                    <li><a href="krushi_mitra_bharati.html">कृषी मित्र भरती</a></li>
+                    <li><a href="contacts.html">संपर्क</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>संपर्क माहिती</h4>
+                <p>📞 फोन: 91 91581 53198, +91 91581 53189
++91 91581 53191, +91 95791 20653</p>
+                <p>✉️ ईमेल: mpkvk1903@gmail.com</p>
+                <p>📍 पत्ता: प्लॉट नं. १२, गट नं. २९, तायल सिद्धिविनायक स्क्वेअर, छत्रपती संभाजीनगर, औरंगाबाद - ४३१००१
+Plot No. 12, Gut No.29, Tayal Sidhhivinayak Square, Chhatrapati Sambhajinagar, Aurangabad-431001.</p>
+            </div>
         </div>
-    </div>
+        <div class="footer-bottom reveal">
+            <p>© 2026 महात्मा फुले कृषी विकास केंद्र
+र
+. सर्व हक्क सुरक्षित.</p>
+        </div>
+    </footer>
 
+    <script>
+        // --- Mobile Menu Toggle with animation ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if(navLinks.classList.contains('active')){
+                hamburger.innerHTML = '✕';
+                hamburger.style.transform = 'rotate(90deg)';
+            } else {
+                hamburger.innerHTML = '☰';
+                hamburger.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '☰';
+                hamburger.style.transform = 'rotate(0deg)';
+            });
+        });
+
+        // --- Header Scroll Effect ---
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.padding = '0 5%';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.padding = '10px 5%';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            }
+        });
+
+        // --- Advanced Scroll Reveal Animation ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; 
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); 
+    </script>
 </body>
 </html>
