@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>संपर्क | महात्मा फुले कृषी विकास केंद्र
-</title>
     
-    <link rel="icon" href="https://i.ibb.co/xK8NjcRV/fevicon.png" type="image/png">
+    <title>Mahatma Phule Krushi Vikas Kendra-महात्मा फुले कृषी विकास केंद्र</title>
+    <link rel="icon" href="https://i.ibb.co/Pv6GGGT3/logo.png" type="image/png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,12 +15,10 @@
         :root {
             --primary-green: #27ae60;
             --dark-green: #1e8449;
-            --light-green: #2ecc71;
-            --light-yellow: #fcf3cf;
-            --white: #ffffff;
             --text-dark: #2c3e50;
-            --text-light: #555555;
-            --header-height: 80px;
+            --bg-color: #f4faf6;
+            --card-bg: #ffffff;
+            --warning-orange: #d35400;
         }
 
         * {
@@ -30,608 +27,144 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: var(--header-height);
-        }
-
         body {
             font-family: 'Mukta', sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-dark);
-            background-color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        /* --- Header & Navigation --- */
-        header {
-            position: fixed;
-            top: 0;
+        .maintenance-container {
+            max-width: 650px;
             width: 100%;
-            height: var(--header-height);
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            z-index: 1000;
-            transition: all 0.3s ease;
+            text-align: center;
         }
 
         .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.8s ease;
         }
 
         .logo-container img {
-            height: 50px;
-            width: 50px;
+            width: 110px;
+            height: 110px;
             object-fit: contain;
-            border-radius: 5px;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo-container:hover img {
-            transform: rotate(-10deg) scale(1.1);
-        }
-
-        .logo-text h1 {
-            font-size: 1.3rem;
-            color: var(--dark-green);
-            font-weight: 700;
-            line-height: 1.2;
-            background: linear-gradient(45deg, var(--dark-green), var(--primary-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .logo-text p {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            line-height: 1.2;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(90deg, var(--light-green), var(--primary-green));
-            transition: width 0.3s ease;
-            border-radius: 5px;
-        }
-
-        .nav-links a.active::after, .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-green);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-size: 1.8rem;
-            color: var(--primary-green);
-            transition: transform 0.3s ease;
-        }
-
-        /* --- Page Header Banner with Ken Burns Effect --- */
-        .page-header {
-            margin-top: var(--header-height);
-            position: relative;
-            overflow: hidden;
-            padding: 100px 5%;
-            text-align: center;
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 40vh;
-        }
-
-        .page-header-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* A warm, inviting agricultural image for contact page */
-            background: url('https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            z-index: -2;
-            animation: kenBurns 20s infinite alternate linear;
-        }
-
-        @keyframes kenBurns {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
-        }
-
-        .page-header-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(30, 132, 73, 0.9), rgba(46, 204, 113, 0.7));
-            z-index: -1;
-        }
-
-        .page-header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
-            animation: slideDown 1s ease-out forwards;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        .page-header p {
-            font-size: 1.4rem;
-            max-width: 800px;
-            text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
-            color: var(--light-yellow);
-            animation: slideUp 1s ease-out 0.3s forwards;
-            opacity: 0;
+        .logo-container h1 {
+            color: var(--dark-green);
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
         }
 
-        /* --- Animated Background Shapes --- */
-        .bg-shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: 0;
-            opacity: 0.3;
-            animation: float 10s infinite ease-in-out alternate;
-        }
-        .shape-1 {
-            width: 350px; height: 350px;
-            background: var(--light-green);
-            top: 10%; left: -10%;
-        }
-        .shape-2 {
-            width: 450px; height: 450px;
-            background: var(--light-yellow);
-            bottom: 5%; right: -10%;
-            animation-delay: -5s;
+        .notice-card {
+            background: var(--card-bg);
+            padding: 45px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 6px solid var(--warning-orange);
+            animation: fadeInUp 0.8s ease 0.2s both;
         }
 
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, -50px) scale(1.1); }
-        }
-
-        /* --- Contact Layout --- */
-        .contact-section {
-            padding: 100px 5%;
-            position: relative;
-            background-color: #fdfdfd;
-            overflow: hidden;
-        }
-
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* --- Contact Info Cards --- */
-        .contact-info-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .info-card {
-            background-color: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            border: 1px solid rgba(39, 174, 96, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-card::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; width: 5px; height: 100%;
-            background: linear-gradient(to bottom, var(--primary-green), var(--light-green));
-            transition: width 0.4s ease;
-            z-index: 0;
-            opacity: 0.8;
-        }
-
-        .info-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 35px rgba(46, 125, 50, 0.15);
-        }
-
-        .info-icon {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #ffffff, var(--light-yellow));
-            width: 70px;
-            height: 70px;
+        .notice-card h2 {
+            color: var(--warning-orange);
+            font-size: 2.2rem;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 15px;
-            border: 2px solid var(--light-green);
-            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.2);
-            transition: all 0.5s ease;
-            position: relative;
-            z-index: 1;
-            flex-shrink: 0;
+            gap: 10px;
         }
 
-        .info-card:hover .info-icon {
-            transform: scale(1.1) rotate(10deg);
-            background: var(--primary-green);
-            border-color: var(--dark-green);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .info-details {
-            position: relative;
-            z-index: 1;
-        }
-
-        .info-details h3 {
-            font-size: 1.3rem;
-            color: var(--dark-green);
-            margin-bottom: 5px;
-        }
-
-        .info-details p, .info-details a {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            line-height: 1.4;
-        }
-
-        .info-details a:hover {
-            color: var(--primary-green);
-            font-weight: 600;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: #113a20; 
-            color: var(--white);
-            padding: 70px 5% 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto 40px;
-        }
-
-        .footer-col h4 {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            color: var(--light-yellow);
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-col h4::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--light-green);
-        }
-
-        .footer-col p, .footer-col ul li a {
-            font-size: 1.1rem;
+        .notice-card p {
+            font-size: 1.25rem;
             line-height: 1.6;
-            color: #d1d8d3;
-            transition: color 0.3s ease;
+            margin-bottom: 15px;
+            color: #444;
         }
 
-        .footer-col ul {
-            list-style: none;
+        .apology-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #f1c40f;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
         }
 
-        .footer-col ul li {
-            margin-bottom: 12px;
+        .apology-box p {
+            margin: 0;
+            font-size: 1.15rem;
+            color: #856404;
         }
 
-        .footer-col ul li a {
-            text-decoration: none;
-            display: inline-block;
+        .team-signature {
+            font-weight: 700;
+            font-size: 1.2rem !important;
+            color: var(--primary-green) !important;
+            margin-top: 30px !important;
+            margin-bottom: 0 !important;
         }
 
-        .footer-col ul li a:hover {
-            color: var(--light-yellow);
-            transform: translateX(8px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 1rem;
-            color: #88a390;
-        }
-
-        /* --- Staggered Scroll Animations --- */
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            .contact-container {
-                grid-template-columns: 1fr;
+        /* Responsive */
+        @media (max-width: 600px) {
+            .notice-card {
+                padding: 30px 20px;
             }
-            .info-card {
-                flex-direction: row;
-                align-items: center;
+            .logo-container h1 {
+                font-size: 1.6rem;
             }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: var(--header-height);
-                right: -100%;
-                flex-direction: column;
-                background-color: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                width: 100%;
-                text-align: center;
-                transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-                padding: 30px 0;
-                gap: 20px;
+            .notice-card h2 {
+                font-size: 1.8rem;
             }
-
-            .nav-links.active {
-                right: 0;
+            .notice-card p {
+                font-size: 1.1rem;
             }
-
-            .hamburger {
-                display: block;
-            }
-
-            .page-header {
-                padding: 80px 5%;
-                min-height: 35vh;
-            }
-
-            .page-header h1 { font-size: 2.2rem; }
-            
-            .info-card {
-                padding: 20px;
+            .apology-box p {
+                font-size: 1.05rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <header id="main-header">
+    <div class="maintenance-container">
         <div class="logo-container">
-            <a href="homepage.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
-                <img src="https://i.ibb.co/Pv6GGGT3/logo.png" alt="प्रतिष्ठान लोगो" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'><rect width=\'50\' height=\'50\' fill=\'%2327ae60\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'12\'>Logo</text></svg>'">
-                <div class="logo-text">
-                    <h1>महात्मा फुले कृषी विकास केंद्र
-</h1>
-                    <p>Mahatma Phule Krushi Vikas Kendra</p>
-                </div>
-            </a>
+            <img src="https://i.ibb.co/Pv6GGGT3/logo.png" alt="महात्मा फुले कृषी विकास केंद्र लोगो">
+            <h1>महात्मा फुले कृषी विकास केंद्र</h1>
         </div>
-        
-        <button class="hamburger" id="hamburger">☰</button>
 
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html">मुख्य पृष्ठ</a></li>
-            <li><a href="technicalsupport.html">तांत्रिक सल्ला</a></li>
-            <li><a href="krushi_mitra_bharati.html">कृषी मित्र भरती</a></li>
-            <li><a href="contacts.html" class="active">संपर्क</a></li>
-        </ul>
-    </header>
-
-    <section class="page-header">
-        <div class="page-header-bg"></div>
-        <div class="page-header-overlay"></div>
-        <h1>आमच्याशी संपर्क साधा</h1>
-        <p>तुमच्या शंका, अभिप्राय किंवा मदतीसाठी आम्ही नेहमी उपलब्ध आहोत.</p>
-    </section>
-
-    <section class="contact-section">
-        <div class="bg-shape shape-1"></div>
-        <div class="bg-shape shape-2"></div>
-
-        <div class="contact-container">
+        <div class="notice-card">
+            <h2>⚙️ महत्वाची सूचना</h2>
+            <p>महात्मा फुले कृषी विकास केंद्राची वेबसाईट सध्या <strong>तांत्रिक सुधारणा (Maintenance)</strong> प्रक्रियेत आहे.</p>
+            <p>या कारणास्तव वेबसाईट पुढील <strong>24 तासांसाठी तात्पुरती बंद</strong> राहील.</p>
             
-            <div class="contact-info-wrapper">
-                
-                <div class="info-card reveal">
-                    <div class="info-icon">📍</div>
-                    <div class="info-details">
-                        <h3>मुख्य कार्यालय</h3>
-                        <p>महात्मा फुले कृषी विकास केंद्र
-,<br>प्लॉट नं. १२, गट नं. २९, तायल सिद्धिविनायक स्क्वेअर, छत्रपती संभाजीनगर, औरंगाबाद - ४३१००१ Plot No. 12, Gut No.29, Tayal Sidhhivinayak Square, Chhatrapati Sambhajinagar, Aurangabad-431001.</p>
-                    </div>
-                </div>
-
-                <div class="info-card reveal" style="transition-delay: 0.1s;">
-                    <div class="info-icon">📞</div>
-                    <div class="info-details">
-                        <h3>फोन / WhatsApp</h3>
-                        <p>
-                            <a href="tel:9158153198">+91 91581 53198</a><br>
-                            <a href="tel:9158153189">+91 91581 53189</a><br>
-                            <a href="tel:9158153191">+91 91581 53191</a><br>
-                            <a href="tel:9579120653">+91 95791 20653</a><br>
-                            <span style="font-size: 0.95rem;"></span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="info-card reveal" style="transition-delay: 0.2s;">
-                    <div class="info-icon">✉️</div>
-                    <div class="info-details">
-                        <h3>ईमेल</h3>
-                        <p>
-                            <a href="mailto:mpkvk1903@gmail.com">mpkvk1903@gmail.com</a>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="info-card reveal" style="transition-delay: 0.3s;">
-                    <div class="info-icon">🌐</div>
-                    <div class="info-details">
-                        <h3>वेबसाइट</h3>
-                        <p>
-                            <a href="https://www.mpkvk.com" target="_blank" rel="noopener noreferrer">www.mpkvk.com</a>
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-grid reveal">
-            <div class="footer-col">
-                <h4>संस्थेचे नाव</h4>
-                <p style="font-size: 1.3rem; font-weight: bold; color: var(--white);">महात्मा फुले कृषी विकास केंद्र
-</p>
-                <p style="font-size: 1rem; color: var(--light-yellow);">Mahatma Phule Krushi Vikas Kendra</p>
+            <div class="apology-box">
+                <p>आपल्याला होणाऱ्या गैरसोयीबद्दल आम्ही दिलगीर आहोत.<br>कृपया 24 तासांनंतर पुन्हा भेट द्यावी.</p>
             </div>
             
-            <div class="footer-col">
-                <h4>महत्त्वाच्या लिंक्स</h4>
-                <ul>
-                    <li><a href="homepage.html">मुख्य पृष्ठ</a></li>
-                    <li><a href="technicalsupport.html">तांत्रिक सल्ला</a></li>
-                    <li><a href="krushi_mitra_bharati.html">कृषी मित्र भरती</a></li>
-                    <li><a href="contacts.html">संपर्क</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h4>संपर्क माहिती</h4>
-                <p>📞 फोन: +91 91581 53198 / 91581 53189<br>
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+91 91581 53191 / 95791 20653</p>
-                <p>✉️ ईमेल: mpkvk1903@gmail.com</p>
-                <p>🌐 वेबसाइट: www.mpkvk.com</p>
-                <p>📍 पत्ता: प्लॉट नं. १२, गट नं. २९, तायल सिद्धिविनायक स्क्वेअर, छत्रपती संभाजीनगर, औरंगाबाद - ४३१००१
-Plot No. 12, Gut No.29, Tayal Sidhhivinayak Square, Chhatrapati Sambhajinagar, Aurangabad-431001.</p>
-            </div>
+            <p class="team-signature">– टीम, महात्मा फुले कृषी विकास केंद्र</p>
         </div>
-        <div class="footer-bottom reveal">
-            <p>© 2026 महात्मा फुले कृषी विकास केंद्र
-. सर्व हक्क सुरक्षित.</p>
-        </div>
-    </footer>
+    </div>
 
-    <script>
-        // --- Mobile Menu Toggle with animation ---
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-        const navItems = document.querySelectorAll('.nav-links a');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            if(navLinks.classList.contains('active')){
-                hamburger.innerHTML = '✕';
-                hamburger.style.transform = 'rotate(90deg)';
-            } else {
-                hamburger.innerHTML = '☰';
-                hamburger.style.transform = 'rotate(0deg)';
-            }
-        });
-
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                hamburger.innerHTML = '☰';
-                hamburger.style.transform = 'rotate(0deg)';
-            });
-        });
-
-        // --- Header Scroll Effect ---
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.style.padding = '0 5%';
-                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.padding = '10px 5%';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
-            }
-        });
-
-        // --- Advanced Scroll Reveal Animation ---
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50; 
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal(); 
-    </script>
 </body>
 </html>
